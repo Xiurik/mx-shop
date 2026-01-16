@@ -3,16 +3,16 @@
 import type { User } from '@/modules/auth/interfaces/user.interface';
 
 export interface Product {
-  id: string;
-  title: string;
-  price: number;
   description: string;
+  gender: string;
+  id: string;
+  images: string[];
+  price: number;
+  sizes: Size[];
   slug: string;
   stock: number;
-  sizes: Size[];
-  gender: string;
   tags: string[];
-  images: string[];
+  title: string;
   user: User;
 }
 

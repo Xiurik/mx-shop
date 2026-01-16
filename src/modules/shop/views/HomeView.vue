@@ -8,11 +8,7 @@
   <div
     class="flex flex-wrap items-center overflow-x-auto overflow-y-hidden py-10 justify-center bg-white text-gray-800"
   >
-    <a
-      rel="noopener noreferrer"
-      href="#"
-      class="flex items-center flex-shrink-0 px-5 py-3 space-x-2text-gray-600"
-    >
+    <a rel="noopener noreferrer" href="#" class="flex items-center flex-shrink-0 px-5 py-3 space-x-2text-gray-600">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -47,11 +43,7 @@
       </svg>
       <span>Corrupti</span>
     </a>
-    <a
-      rel="noopener noreferrer"
-      href="#"
-      class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 text-gray-600"
-    >
+    <a rel="noopener noreferrer" href="#" class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 text-gray-600">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -68,11 +60,7 @@
       </svg>
       <span>Excepturi</span>
     </a>
-    <a
-      rel="noopener noreferrer"
-      href="#"
-      class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 text-gray-600"
-    >
+    <a rel="noopener noreferrer" href="#" class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 text-gray-600">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -113,7 +101,7 @@ const page = ref(Number(route.query.page || 1));
 const queryClient = useQueryClient();
 
 const { data: products = [] } = useQuery({
-  queryKey: ['products', { page: page }],
+  queryKey: ['products', { page: page.value }],
   queryFn: () => getProductsAction(page.value),
 });
 
@@ -121,7 +109,6 @@ watch(
   () => route.query.page,
   (newPage) => {
     page.value = Number(newPage || 1);
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
   },
 );
