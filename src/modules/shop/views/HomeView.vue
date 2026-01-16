@@ -85,7 +85,7 @@
 
   <ProductList v-else :products="products" />
 
-  <ButtonPagination :has-more-data="!!products && products.length < 10" :page="page" />
+  <ButtonPagination :hasMoreData="!!products && products.length < 10" :page="page" />
 </template>
 
 <script lang="ts" setup>
@@ -101,11 +101,13 @@ const page = ref(Number(route.query.page || 1));
 const queryClient = useQueryClient();
 
 const { data: products = [] } = useQuery({
-  queryKey: ['products', { page: page.value }],
+  // { page: page }: We are using the page variable as part of the query key to refetch when it changes
+  queryKey: ['products', { page: page }],
   queryFn: () => getProductsAction(page.value),
 });
 
 watch(
+  // Watch for changes in the route query parameter 'page'
   () => route.query.page,
   (newPage) => {
     page.value = Number(newPage || 1);
@@ -114,6 +116,7 @@ watch(
 );
 
 watchEffect(() => {
+  // Prefetch next page when current page changes
   queryClient.prefetchQuery({
     queryKey: ['products', { page: page.value + 1 }],
     queryFn: () => getProductsAction(page.value + 1),
