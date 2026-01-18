@@ -1,7 +1,8 @@
 <template>
   <nav class="fixed top-0 left-0 z-20 w-full border-b border-gray-200 bg-white py-2.5 px-6 sm:px-4">
     <div class="container mx-auto flex max-w-6xl flex-wrap items-center justify-between">
-      <a href="#" class="flex items-center">
+      <!-- #region Logo Home -->
+      <RouterLink :to="{ name: 'home' }" class="flex items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -18,22 +19,40 @@
         </svg>
 
         <span class="self-center whitespace-nowrap text-xl font-semibold">Termcode</span>
-      </a>
+      </RouterLink>
+      <!-- #endregion -->
+
       <div class="mt-2 sm:mt-0 sm:flex md:order-2">
-        <!-- Login Button -->
+        <!-- #region Logout Button -->
         <button
-          type="button"
+          v-if="authStore.isAuthenticated"
+          @click="handleLogout"
+          class="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+        >
+          Logout
+        </button>
+        <!-- #endregion -->
+
+        <!-- #region Login Button -->
+        <RouterLink
+          v-if="!authStore.isAuthenticated"
+          :to="{ name: 'login' }"
           class="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
         >
           Login
-        </button>
-        <button
-          type="button"
+        </RouterLink>
+        <!-- #endregion -->
+
+        <!-- #region Register Button -->
+        <RouterLink
+          v-if="!authStore.isAuthenticated"
+          :to="{ name: 'register' }"
           class="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
         >
           Register
-        </button>
-        <!-- Register Button -->
+        </RouterLink>
+        <!-- #endregion -->
+
         <button
           data-collapse-toggle="navbar-sticky"
           type="button"
@@ -95,3 +114,13 @@
     </div>
   </nav>
 </template>
+
+<script lang="ts" setup>
+import { useAuthStore } from '@/modules/auth/stores/auth.store';
+
+const authStore = useAuthStore();
+
+const handleLogout = () => {
+  authStore.logOut();
+};
+</script>
