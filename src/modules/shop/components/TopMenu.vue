@@ -23,35 +23,45 @@
       <!-- #endregion -->
 
       <div class="mt-2 sm:mt-0 sm:flex md:order-2">
-        <!-- #region Logout Button -->
-        <button
-          v-if="authStore.isAuthenticated"
-          @click="handleLogout"
-          class="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
-        >
-          Logout
-        </button>
-        <!-- #endregion -->
+        <template v-if="authStore.isAuthenticated">
+          <!-- #region Admin Button -->
+          <RouterLink
+            v-if="authStore.isAdmin"
+            :to="{ name: 'admin' }"
+            class="mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          >
+            Admin
+          </RouterLink>
+          <!-- #endregion -->
+          <!-- #region Logout Button -->
+          <button
+            @click="authStore.logOut()"
+            class="mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          >
+            Logout
+          </button>
+          <!-- #endregion -->
+        </template>
 
-        <!-- #region Login Button -->
-        <RouterLink
-          v-if="!authStore.isAuthenticated"
-          :to="{ name: 'login' }"
-          class="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
-        >
-          Login
-        </RouterLink>
-        <!-- #endregion -->
+        <template v-if="!authStore.isAuthenticated">
+          <!-- #region Login Button -->
+          <RouterLink
+            :to="{ name: 'login' }"
+            class="mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          >
+            Login
+          </RouterLink>
+          <!-- #endregion -->
 
-        <!-- #region Register Button -->
-        <RouterLink
-          v-if="!authStore.isAuthenticated"
-          :to="{ name: 'register' }"
-          class="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
-        >
-          Register
-        </RouterLink>
-        <!-- #endregion -->
+          <!-- #region Register Button -->
+          <RouterLink
+            :to="{ name: 'register' }"
+            class="mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          >
+            Register
+          </RouterLink>
+          <!-- #endregion -->
+        </template>
 
         <button
           data-collapse-toggle="navbar-sticky"
@@ -119,8 +129,4 @@
 import { useAuthStore } from '@/modules/auth/stores/auth.store';
 
 const authStore = useAuthStore();
-
-const handleLogout = () => {
-  authStore.logOut();
-};
 </script>

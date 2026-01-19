@@ -77,6 +77,10 @@ export const useAuthStore = defineStore('auth', () => {
     }
   };
 
+  const isAdmin = computed(() => {
+    return user.value?.roles.includes('admin') || false;
+  });
+
   return {
     authStatus,
     user,
@@ -86,6 +90,7 @@ export const useAuthStore = defineStore('auth', () => {
     isChecking,
     isAuthenticated,
     userName,
+    isAdmin,
 
     // actions
     login,
