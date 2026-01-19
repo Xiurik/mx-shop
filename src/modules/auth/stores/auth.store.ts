@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import { loginAction } from '../actions/login.action';
-import { registerAction } from '../actions/register.action';
+
+import { checkAuthAction, loginAction, registerAction } from '../actions';
 import { AuthStatus, type ILoginResponse, type User } from '../interfaces';
 
 export const useAuthStore = defineStore('auth', () => {
@@ -22,30 +23,39 @@ export const useAuthStore = defineStore('auth', () => {
     return user.value?.fullName || '';
   });
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const loginResponse = await loginAction(email, password);
-      return logRegResponse(loginResponse);
+      return loadResponse(loginResponse);
     } catch (error) {
-      console.log('error => ', error);
-      logOut();
+      logOut(error);
       return false;
     }
   };
 
-  const logOut = () => {
+  const logOut = (error?: any) => {
+    console.log('error => ', error);
     authStatus.value = AuthStatus.NOT_AUTHENTICATED;
     user.value = null;
     token.value = '';
   };
 
-  const registerUser = async (fullName: string, email: string, password: string) => {
+  const registerUser = async (fullName: string, email: string, password: string): Promise<boolean> => {
     try {
       const registerResponse = await registerAction(fullName, email, password);
-      return logRegResponse(registerResponse);
+      return loadResponse(registerResponse);
     } catch (error) {
-      console.log('error => ', error);
-      logOut();
+      logOut(error);
+      return false;
+    }
+  };
+
+  const checkAuth = async (): Promise<boolean> => {
+    try {
+      const checkAuthResponse = await checkAuthAction();
+      return loadResponse(checkAuthResponse);
+    } catch (error) {
+      logOut(error);
       return false;
     }
   };
@@ -55,7 +65,7 @@ export const useAuthStore = defineStore('auth', () => {
     return emailRegex.test(email);
   };
 
-  const logRegResponse = (response: ILoginResponse): boolean => {
+  const loadResponse = (response: ILoginResponse): boolean => {
     if (!response.ok) {
       logOut();
       return false;
@@ -81,6 +91,7 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     logOut,
     registerUser,
+    checkAuth,
     validateEmail,
   };
 });

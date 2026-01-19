@@ -11,3 +11,13 @@ export interface ILoginResponse {
   token?: string;
   message?: string;
 }
+
+export interface ICheckError {
+  ok: boolean;
+}
+
+export interface ICheckSuccess {
+  ok: boolean;
+  user: User;
+  token: string;
+}

@@ -91,6 +91,13 @@ const registerForm = reactive({
 });
 
 const onRegister = async () => {
+  // validate name
+  if (registerForm.name.trim() === '') {
+    toast.error('Please enter a name.');
+    nameInputRef.value?.focus();
+    return;
+  }
+
   // validate password and match
   if (!validatePassword(registerForm.password, registerForm.confirmPassword)) {
     passwordInputRef.value?.focus();
@@ -114,9 +121,6 @@ const onRegister = async () => {
   }
 };
 
-// validate the password and confirm password match
-// min length is 6 and max length is 50
-// must contain at least one uppercase letter, one lowercase letter and one number
 const validatePassword = (password: string, confirmPassword: string): boolean => {
   if (password !== confirmPassword) {
     toast.error('Passwords do not match.');

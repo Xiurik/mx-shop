@@ -4,6 +4,13 @@ const tesloApi = axios.create({
   baseURL: import.meta.env.VITE_TESLO_API_URL,
 });
 
-//TODO: Interceptors
+// Request Interceptor to add Token
+tesloApi.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 export { tesloApi };
