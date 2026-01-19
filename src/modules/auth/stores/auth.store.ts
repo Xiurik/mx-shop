@@ -28,16 +28,8 @@ export const useAuthStore = defineStore('auth', () => {
       const loginResponse = await loginAction(email, password);
       return loadResponse(loginResponse);
     } catch (error) {
-      logOut(error);
-      return false;
+      return logOut(error);
     }
-  };
-
-  const logOut = (error?: any) => {
-    console.log('error => ', error);
-    authStatus.value = AuthStatus.NOT_AUTHENTICATED;
-    user.value = null;
-    token.value = '';
   };
 
   const registerUser = async (fullName: string, email: string, password: string): Promise<boolean> => {
@@ -45,8 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
       const registerResponse = await registerAction(fullName, email, password);
       return loadResponse(registerResponse);
     } catch (error) {
-      logOut(error);
-      return false;
+      return logOut(error);
     }
   };
 
@@ -55,8 +46,7 @@ export const useAuthStore = defineStore('auth', () => {
       const checkAuthResponse = await checkAuthAction();
       return loadResponse(checkAuthResponse);
     } catch (error) {
-      logOut(error);
-      return false;
+      return logOut(error);
     }
   };
 
@@ -67,14 +57,22 @@ export const useAuthStore = defineStore('auth', () => {
 
   const loadResponse = (response: ILoginResponse): boolean => {
     if (!response.ok) {
-      logOut();
-      return false;
+      return logOut();
     } else {
       user.value = response.user!;
       token.value = response.token!;
       authStatus.value = AuthStatus.AUTHENTICATED;
       return true;
     }
+  };
+
+  const logOut = (error?: any) => {
+    console.log('error => ', error);
+    localStorage.removeItem('authToken');
+    authStatus.value = AuthStatus.NOT_AUTHENTICATED;
+    user.value = null;
+    token.value = '';
+    return false;
   };
 
   const isAdmin = computed(() => {
