@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center py-10 bg-gray-100 space-x-3">
+  <div class="flex justify-center py-6 space-x-3">
     <button
       :disabled="page === 1"
       @click="$router.push({ query: { page: page - 1 } })"

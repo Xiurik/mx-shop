@@ -90,14 +90,13 @@
 
 <script lang="ts" setup>
 import ButtonPagination from '@/modules/common/components/ButtonPagination.vue';
+import { usePagination } from '@/modules/common/composables/usePagination';
 import { getProductsAction } from '@/modules/products/actions';
 import ProductList from '@/modules/products/components/ProductList.vue';
 import { useQuery, useQueryClient } from '@tanstack/vue-query';
-import { ref, watch, watchEffect } from 'vue';
-import { useRoute } from 'vue-router';
+import { watchEffect } from 'vue';
 
-const route = useRoute();
-const page = ref(Number(route.query.page || 1));
+const { page } = usePagination();
 const queryClient = useQueryClient();
 
 const { data: products = [] } = useQuery({
@@ -105,15 +104,6 @@ const { data: products = [] } = useQuery({
   queryKey: ['products', { page: page }],
   queryFn: () => getProductsAction(page.value),
 });
-
-watch(
-  // Watch for changes in the route query parameter 'page'
-  () => route.query.page,
-  (newPage) => {
-    page.value = Number(newPage || 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  },
-);
 
 watchEffect(() => {
   // Prefetch next page when current page changes

@@ -22,11 +22,6 @@ authStore.$subscribe(
       return;
     }
 
-    if (state.authStatus === AuthStatus.NOT_AUTHENTICATED) {
-      router.replace({ name: 'login' });
-      return;
-    }
-
     if (route.path.includes('/auth') && state.authStatus === AuthStatus.AUTHENTICATED) {
       router.replace({ name: 'home' });
       return;

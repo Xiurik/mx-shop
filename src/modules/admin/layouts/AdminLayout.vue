@@ -1,12 +1,170 @@
 <template>
-  <div class="flex h-screen flex-col items-center justify-center bg-gradient-to-br from-red-500 to-red-900">
-    <h1 class="mb-4 text-6xl font-bold text-black drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">Hello Admin</h1>
-    <RouterLink
-      :to="{ name: 'home' }"
-      class="rounded-lg border border-white px-6 py-2 text-white transition-all hover:bg-white hover:text-red-700"
-    >
-      Return Home
-    </RouterLink>
+  <!-- component -->
+  <div class="flex w-screen h-screen text-gray-700">
+    <!-- #region Side Menu Icons -->
+    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-300">
+      <!-- #region Go Back -->
+      <RouterLink :to="{ name: 'home' }" class="flex items-center justify-center flex-shrink-0 w-full h-16 bg-gray-300">
+        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+          />
+        </svg>
+      </RouterLink>
+      <!-- #endregion -->
+
+      <!-- #region Home -->
+      <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+          />
+        </svg>
+      </a>
+      <!-- #endregion -->
+
+      <!-- #region Orders -->
+      <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+      </a>
+      <!-- #endregion -->
+
+      <!-- #region Products -->
+      <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+          />
+        </svg>
+      </a>
+      <!-- #endregion -->
+
+      <!-- #region Statistics -->
+      <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+      </a>
+      <!-- #endregion -->
+
+      <!-- #region Settings -->
+      <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+          />
+        </svg>
+      </a>
+      <!-- #endregion -->
+
+      <!-- #region Profile -->
+      <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-auto rounded hover:bg-gray-300" href="#">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </a>
+      <!-- #endregion -->
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region Dropdown Menu -->
+    <div class="flex flex-col w-56 border-r border-gray-300">
+      <!-- #region Dropdown Button -->
+      <button class="relative text-sm focus:outline-none group">
+        <!-- Dropdown  -->
+        <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-300 hover:bg-gray-300">
+          <span class="font-medium"> Dropdown </span>
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <!-- Dropdown Items -->
+        <div class="absolute z-10 flex-col items-start hidden w-full pb-1 bg-white shadow-lg group-focus:flex">
+          <a class="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Item 1</a>
+          <a class="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Item 2</a>
+          <a class="w-full px-4 py-2 text-left hover:bg-gray-300" href="#">Item 3</a>
+        </div>
+      </button>
+      <!-- #endregion -->
+
+      <!-- #region Side Menu Items Display -->
+      <div class="flex flex-col flex-grow p-4 overflow-auto">
+        <RouterLink
+          :to="{ name: 'admin.dashboard' }"
+          class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300"
+        >
+          <span class="leading-none">Dashboard</span>
+        </RouterLink>
+        <RouterLink
+          :to="{ name: 'admin.products' }"
+          class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300"
+        >
+          <span class="leading-none">Products</span>
+        </RouterLink>
+        <a
+          class="flex items-center flex-shrink-0 h-10 px-3 mt-auto text-sm font-medium bg-blue-700 text-white rounded hover:bg-blue-500"
+          href="#"
+        >
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          <span class="ml-2 leading-none">New Product</span>
+        </a>
+      </div>
+      <!-- #endregion -->
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region Main Content -->
+    <div class="flex flex-col flex-grow">
+      <!-- #region Header -->
+      <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-300">
+        <!-- #region Title -->
+        <h1 class="text-lg font-medium">Mx Shop Admin Panel</h1>
+        <!-- #endregion -->
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region Dashboard -->
+      <div class="flex-grow p-6 overflow-auto bg-gray-200">
+        <RouterView />
+      </div>
+      <!-- #endregion -->
+    </div>
+    <!-- #endregion -->
   </div>
 </template>
 
