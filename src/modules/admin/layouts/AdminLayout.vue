@@ -135,7 +135,7 @@
           <span class="leading-none">Products</span>
         </RouterLink>
         <a
-          class="flex items-center flex-shrink-0 h-10 px-3 mt-auto text-sm font-medium bg-blue-700 text-white rounded hover:bg-blue-500"
+          class="flex items-center flex-shrink-0 h-10 px-3 mt-auto text-sm bg-blue-500 hover:bg-blue-700 text-white font-medium rounded"
           href="#"
         >
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

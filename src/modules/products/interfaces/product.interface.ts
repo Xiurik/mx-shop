@@ -17,11 +17,11 @@ export interface Product {
 }
 
 export enum Size {
-  L = 'L',
-  M = 'M',
-  S = 'S',
-  XL = 'XL',
   XS = 'XS',
+  S = 'S',
+  M = 'M',
+  L = 'L',
+  XL = 'XL',
   XXL = 'XXL',
 }
 
@@ -29,4 +29,5 @@ export enum Gender {
   KID = 'kid',
   WOMEN = 'women',
   MEN = 'men',
+  UNISEX = 'unisex',
 }

@@ -24,7 +24,9 @@
                 <img :src="product.images[0]" alt="product.name" class="w-10 h-10" />
               </td>
               <td class="font-bold text-left py-3 px-4 hover:cursor-pointer hover:text-blue-500 hover:underline">
-                <RouterLink :to="{ name: 'admin.product', params: { id: product.id } }">{{ product.title }}</RouterLink>
+                <RouterLink :to="{ name: 'admin.product', params: { prodId: product.id } }">{{
+                  product.title
+                }}</RouterLink>
               </td>
               <td class="text-left py-3 px-4">
                 <span class="text-green-700 font-bold bg-green-200 rounded-full px-2 py-1">
