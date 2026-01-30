@@ -2,7 +2,7 @@
   <!-- component -->
   <div class="flex w-screen h-screen text-gray-700">
     <!-- #region Side Menu Icons -->
-    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-300">
+    <div class="flex flex-col flex-shrink-0 items-center w-16 pb-4 overflow-auto border-r border-gray-300">
       <!-- #region Go Back -->
       <RouterLink :to="{ name: 'home' }" class="flex items-center justify-center flex-shrink-0 w-full h-16 bg-gray-300">
         <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,7 +97,7 @@
     <!-- #endregion -->
 
     <!-- #region Dropdown Menu -->
-    <div class="flex flex-col w-56 border-r border-gray-300">
+    <div class="flex flex-col flex-shrink-0 w-56 border-r border-gray-300">
       <!-- #region Dropdown Button -->
       <button class="relative text-sm focus:outline-none group">
         <!-- Dropdown  -->
@@ -134,15 +134,15 @@
         >
           <span class="leading-none">Products</span>
         </RouterLink>
-        <a
+        <RouterLink
+          :to="{ name: 'admin.product', params: { prodId: undefined } }"
           class="flex items-center flex-shrink-0 h-10 px-3 mt-auto text-sm bg-blue-500 hover:bg-blue-700 text-white font-medium rounded"
-          href="#"
         >
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
           <span class="ml-2 leading-none">New Product</span>
-        </a>
+        </RouterLink>
       </div>
       <!-- #endregion -->
     </div>

@@ -1,15 +1,15 @@
 <template>
   <!-- #region Title -->
-  <div v-if="product" class="bg-white px-5 py-2 rounded">
+  <div class="bg-white px-5 py-2 rounded">
     <h1 class="text-3xl">
-      <small class="text-blue-500">{{ product?.title }}</small>
+      <small class="text-blue-500">{{ title || 'Nuevo Producto' }}</small>
     </h1>
     <hr class="my-4" />
   </div>
   <!-- #endregion -->
 
   <!-- #region Form Control -->
-  <form v-if="product" @submit.prevent="onSubmit" class="grid grid-cols-1 sm:grid-cols-2 bg-white px-5 gap-5">
+  <form v-if="!isLoading" @submit.prevent="onSubmit" class="grid grid-cols-1 sm:grid-cols-2 bg-white px-5 gap-5">
     <div class="first-col">
       <!-- #region Title -->
       <div class="mb-4">

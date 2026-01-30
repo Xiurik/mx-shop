@@ -16,6 +16,10 @@ export interface Product {
   user: User;
 }
 
+export interface ProductDto extends Omit<Product, 'sizes' | 'user' | 'id'> {
+  sizes: string[];
+}
+
 export enum Size {
   XS = 'XS',
   S = 'S',
